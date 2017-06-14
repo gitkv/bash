@@ -14,16 +14,13 @@ PERM="755"
 #создаем каталог
 mkdir $WWW/$DOMAIN
 
-#указываем владельца и права на каталоги проекта и веб-сервера
+# Создаем стартовую страничку php
+touch $WWW/$DOMAIN/index.php
+echo "<h2>$DOMAIN</h2><?php phpinfo(); ?>" >> $WWW/$DOMAIN/index.php
+
+#указываем владельца и права на каталог проекта
 chown -R $FOLDER_OWN $WWW/$DOMAIN/
 chmod -R $PERM $WWW/$DOMAIN/
-
-# Создаем стартовую страничку
-touch $WWW/$DOMAIN/index.php
-echo "<h2>It Works! $DOMAIN</h2><?php phpinfo(); ?>" >> $WWW/$DOMAIN/index.php
-chown -R $FOLDER_OWN $WWW/$DOMAIN/index.php
-chmod -R $PERM $WWW/$DOMAIN/index.php
-
 
 # добавляем в хосты
 add_to_hosts_conf="127.0.0.1 ${DOMAIN}"
